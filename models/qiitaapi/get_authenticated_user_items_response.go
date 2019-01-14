@@ -1,8 +1,8 @@
-package main
+package qiitaapi
 
 import "time"
 
-type qiitaPost []struct {
+type GetAuthenticatedUserItemsResponse []struct {
 	RenderedBody  string    `json:"rendered_body"`
 	Body          string    `json:"body"`
 	Coediting     bool      `json:"coediting"`

@@ -42,7 +42,7 @@ func readFromQiita(s setting) {
 	defer resp.Body.Close()
 
 	raw, _ := ioutil.ReadAll(resp.Body)
-	var data GetAuthenticatedUserItemsRequest
+	var data GetAuthenticatedUserItemsResponse
 
 	if err := json.Unmarshal(raw, &data); err != nil {
 		fmt.Println("JSON Unmarshal error:", err)

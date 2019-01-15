@@ -1,4 +1,4 @@
-package qiitaapi
+package qiita
 
 type PatchItemsIdRequest struct {
 	Body         string `json:"body"`

@@ -1,4 +1,4 @@
-package qiitaapi
+package qiita
 
 import "time"
 

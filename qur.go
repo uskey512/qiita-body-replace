@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/uskey512/qiita-url-replace/models/qiitaapi"
 )
 
 type setting struct {
@@ -32,6 +34,10 @@ func getParameter() setting {
 	}
 }
 
+func getUserItemCount() int {
+
+}
+
 func readFromQiita(s setting) {
 	url := fmt.Sprintf("https://%s/api/v2/authenticated_user/items", s.dstDomain)
 	req, _ := http.NewRequest("GET", url, nil)
@@ -42,7 +48,7 @@ func readFromQiita(s setting) {
 	defer resp.Body.Close()
 
 	raw, _ := ioutil.ReadAll(resp.Body)
-	var data GetAuthenticatedUserItemsResponse
+	var data qiitaapi.GetAuthenticatedUserItemsResponse
 
 	if err := json.Unmarshal(raw, &data); err != nil {
 		fmt.Println("JSON Unmarshal error:", err)

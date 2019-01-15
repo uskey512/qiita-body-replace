@@ -1,4 +1,4 @@
-package qiitaapi
+package qiita
 
 type GetUsersResponse []struct {
 	Description       string `json:"description"`

@@ -1,8 +1,10 @@
 package clients
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 
@@ -11,8 +13,8 @@ import (
 )
 
 const (
-	QiitaEndPointBase     = "https://qiita.com/api/v2/"
-	QiitaTeamEndpointBase = "https://%s.qiita.com/api/v2/"
+	QiitaEndPointBase     = "https://qiita.com/api/v2"
+	QiitaTeamEndpointBase = "https://%s.qiita.com/api/v2"
 )
 
 type QiitaClient struct {
@@ -40,24 +42,26 @@ func NewQiitaTeamClient(team, authToken string) (*QiitaClient, error) {
 	return &QiitaClient{fmt.Sprintf(QiitaTeamEndpointBase, team), authToken}, nil
 }
 
-func (q *QiitaClient) GetAuthenticatedUser() (*models.GetAuthenticatedUserResponse, error) {
-	url := q.endpointBase + "authenticated_user"
-	raw, err := q.executeRequest(http.MethodGet, url)
+func (q *QiitaClient) GetAuthenticatedUserItems(page, perPage int) (*models.GetAuthenticatedUserItemsResponses, error) {
+	url := fmt.Sprintf("%s/authenticated_user/items?page=%d&per_page=%d", q.endpointBase, page, perPage)
+	raw, err := q.executeRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	data := new(models.GetAuthenticatedUserResponse)
+	data := models.GetAuthenticatedUserItemsResponses{}
 	if err := json.Unmarshal(raw, &data); err != nil {
 		return nil, errors.Wrap(err, "Json Unmarshal error ")
 	}
 
-	return data, nil
+	return &data, nil
 }
 
-func (q *QiitaClient) GetAuthenticatedUserItems(page, perPage int) (*models.GetAuthenticatedUserItemsResponse, error) {
-	url := q.endpointBase + "authenticated_user/items?page=1&per_page=100"
-	raw, err := q.executeRequest(http.MethodGet, url)
+func (q *QiitaClient) PatchItemById(itemId string, request *models.PatchItemsIdRequest) (*models.GetAuthenticatedUserItemsResponse, error) {
+	url := fmt.Sprintf("%s/items/%s", q.endpointBase, itemId)
+
+	b, _ := json.Marshal(request)
+	raw, err := q.executeRequest(http.MethodPatch, url, bytes.NewBuffer(b))
 	if err != nil {
 		return nil, err
 	}
@@ -70,11 +74,12 @@ func (q *QiitaClient) GetAuthenticatedUserItems(page, perPage int) (*models.GetA
 	return data, nil
 }
 
-func (q *QiitaClient) executeRequest(method, url string) ([]byte, error) {
-	req, err := http.NewRequest("GET", url, nil)
+func (q *QiitaClient) executeRequest(method, url string, body io.Reader) ([]byte, error) {
+	req, err := http.NewRequest(method, url, body)
 	if err != nil {
 		return nil, errors.Wrap(err, "http.NewRequest fail")
 	}
+	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", q.authToken))
 
 	client := new(http.Client)

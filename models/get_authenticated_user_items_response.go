@@ -1,8 +1,24 @@
 package models
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
-type GetAuthenticatedUserItemsResponse []struct {
+func (g *GetAuthenticatedUserItemsResponses) UnmarshalJSON(bs []byte) error {
+	return json.Unmarshal(bs, &g.Response)
+}
+
+type GetAuthenticatedUserItemsResponses struct {
+	Response []GetAuthenticatedUserItemsResponse
+	ErrorResult
+}
+
+type ErrorResult struct {
+	errorMessage string
+}
+
+type GetAuthenticatedUserItemsResponse struct {
 	RenderedBody  string    `json:"rendered_body"`
 	Body          string    `json:"body"`
 	Coediting     bool      `json:"coediting"`

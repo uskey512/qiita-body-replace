@@ -1,5 +1,5 @@
 # qiita-body-replace
-自分が投稿した全てのQiita/QiitaTeam記事の本文中の文字列を一括置換します
+自分が投稿した全てのQiita/Qiita:Team記事の本文中の文字列を一括置換します
 
 ## 使い方
 ### 1. Qiitaアクセストークンを取得する
@@ -18,11 +18,13 @@ $ qiita-body-replace
 ```
 
 #### b. ビルド版を入手する
-- [qiita-body-replace.darwin.386 5.47 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.darwin.386)
-- [qiita-body-replace.darwin.amd64 6.32 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.darwin.amd64)
-- [qiita-body-replace.windows.386.exe 5.24 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.windows.386.exe)
-- [qiita-body-replace.windows.amd64.exe 6.03 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.windows.amd64.exe)
-
+- Mac版 chmodなりで実行権限付与してターミナルから起動してください
+  - [qiita-body-replace.darwin.386 32bit (5.47 MB)](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.darwin.386)
+  - [qiita-body-replace.darwin.amd64 64bit (6.32 MB)](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.darwin.amd64)
+  
+- Windows版 ダウンロードしたexeを実行してください (警告出ますが無視してokです)
+  - [qiita-body-replace.windows.386.exe 32bit (5.24 MB)](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.windows.386.exe)
+  - [qiita-body-replace.windows.amd64.exe 64bit (6.03 MB)](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.windows.amd64.exe)
 
 ### 3. 実行する
 下記のパラメータを入力すると置換が開始されます。  

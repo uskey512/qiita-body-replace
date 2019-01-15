@@ -10,7 +10,21 @@ https://qiita.com/settings/tokens/new にアクセスして
 
 表示されたトークンを控える。  
 
-### 2. 実行する
+### 2. いずれかの方法で取得する
+#### a. `go get`で導入する
+```
+$ go get -u github.com/uskey512/qiita-body-replace
+$ qiita-body-replace
+```
+
+#### b. ビルド版を入手する
+- [qiita-body-replace.darwin.386 5.47 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.darwin.386)
+- [qiita-body-replace.darwin.amd64 6.32 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.darwin.amd64)
+- [qiita-body-replace.windows.386.exe 5.24 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.windows.386.exe)
+- [qiita-body-replace.windows.amd64.exe 6.03 MB](https://github.com/uskey512/qiita-body-replace/releases/download/v1.0.0/qiita-body-replace.windows.amd64.exe)
+
+
+### 3. 実行する
 下記のパラメータを入力すると置換が開始されます。  
 - アクセストークン
 - 置換前文字列

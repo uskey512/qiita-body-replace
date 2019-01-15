@@ -1,10 +1,13 @@
 package qiita
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/pkg/errors"
+	"github.com/uskey512/qiita-url-replace/models/qiita"
 )
 
 const (
@@ -44,5 +47,19 @@ func (q *QiitaClient) GetAuthenticatedUser() (GetAuthenticatedUserResponse, erro
 	if err != nil {
 		return nil, errors.Wrap(err, "GetAuthenticatedUser fail")
 	}
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", q.authToken))
 
+	client := new(http.Client)
+	resp, _ := client.Do(req)
+	defer resp.Body.Close()
+
+	raw, _ := ioutil.ReadAll(resp.Body)
+	var data qiita.GetAuthenticatedUser
+
+	if err := json.Unmarshal(raw, &data); err != nil {
+		return nil, errors.Wrap(err, "Json Unmarshal error : ", err)
+	}
+	fmt.Println(data[0].Body)
+
+	return data, nil
 }

@@ -9,7 +9,7 @@ import (
 	"net/http"
 
 	"github.com/pkg/errors"
-	"github.com/uskey512/qiita-url-replace/models"
+	"github.com/uskey512/qiita-body-replace/models"
 )
 
 const (

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/uskey512/qiita-url-replace/services"
+	"github.com/uskey512/qiita-body-replace/services"
 )
 
 func getParameter() (services.ConnectionSetting, services.ReplaceSetting) {

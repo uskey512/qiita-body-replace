@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/uskey512/qiita-url-replace/clients"
-	"github.com/uskey512/qiita-url-replace/models"
+	"github.com/uskey512/qiita-body-replace/clients"
+	"github.com/uskey512/qiita-body-replace/models"
 )
 
 const getPerPage = 100

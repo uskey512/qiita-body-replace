@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/uskey512/qiita-url-replace/clients"
+	"github.com/uskey512/qiita-url-replace/models"
 )
 
 const getPerPage = 100
@@ -52,16 +53,24 @@ func ReplaceBodyUrlDomain(qc *clients.QiitaClient, r ReplaceSetting) {
 			os.Exit(1)
 		}
 
-		for i := 0; i < len(*items); i++ {
+		for i := 0; i < len((*items).Response); i++ {
 			itemCount++
-			if strings.Index((*items)[i].Body, r.SrcDomain) != -1 {
-				// ここに置換 & PATCH する実装を追加
+			if strings.Index((*items).Response[i].Body, r.SrcDomain) != -1 {
+				item := (*items).Response[i]
 
-				fmt.Println((*items)[i].URL)
+				replacedBody := strings.Replace(item.Body, r.SrcDomain, r.DstDomain, -1)
+				replacedPatchRequest := models.PatchItemsIdRequest{
+					Title: item.Title,
+					Body:  replacedBody,
+				}
+
+				qc.PatchItemById(item.ID, &replacedPatchRequest)
 				replacedItemCount++
+
+				fmt.Printf("replace done. url : %s ", item.URL)
 			}
 		}
-		if len(*items) != getPerPage {
+		if len((*items).Response) != getPerPage {
 			break
 		}
 		page++

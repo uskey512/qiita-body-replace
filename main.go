@@ -9,16 +9,16 @@ import (
 func getParameter() (services.ConnectionSetting, services.ReplaceSetting) {
 	var token, team, srcDomain, dstDomain string
 
-	fmt.Print("トークン : ")
+	fmt.Print("アクセストークン : ")
 	fmt.Scan(&token)
 
-	fmt.Print("変換前ドメイン : ")
+	fmt.Print("置換前文字列 : ")
 	fmt.Scan(&srcDomain)
 
-	fmt.Print("変更後ドメイン : ")
+	fmt.Print("置換後文字列 : ")
 	fmt.Scan(&dstDomain)
 
-	fmt.Print("所属チーム(Optional) : ")
+	fmt.Print("所属チーム(Qiita:Teamの場合のみ) : ")
 	fmt.Scan(&team)
 
 	return services.ConnectionSetting{

@@ -67,7 +67,7 @@ func ReplaceBodyUrlDomain(qc *clients.QiitaClient, r ReplaceSetting) {
 				qc.PatchItemById(item.ID, &replacedPatchRequest)
 				replacedItemCount++
 
-				fmt.Printf("replace done. url : %s ", item.URL)
+				fmt.Printf("replace done. url : %s \n", item.URL)
 			}
 		}
 		if len((*items).Response) != getPerPage {
@@ -76,5 +76,5 @@ func ReplaceBodyUrlDomain(qc *clients.QiitaClient, r ReplaceSetting) {
 		page++
 	}
 
-	fmt.Printf("変換した記事の数 : %d / %d\n", replacedItemCount, itemCount)
+	fmt.Printf("置換した記事数 / 全記事数 : %d / %d\n", replacedItemCount, itemCount)
 }

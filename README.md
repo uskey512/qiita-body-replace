@@ -1,5 +1,5 @@
 # qiita-body-replace
-自分が投稿したQiita/QiitaTeamの本文中の文字列を一括置換します
+自分が投稿した全てのQiita/QiitaTeam記事の本文中の文字列を一括置換します
 
 ## 使い方
 ### 1. Qiitaアクセストークンを取得する
@@ -17,4 +17,9 @@ https://qiita.com/settings/tokens/new にアクセスして
 - チーム名 (Qiita:teamの場合のみ必要)
   - `example`.qiita.com の `example`部分
 
-
+### 利用例
+#### 参照している外部サイトが別ドメインに移行してしまった場合
+`http://aaa.com/`から`https://bbb.com/`に移行したケースだと  
+変更前文字列 : `http://aaa.com/`  
+変更後文字列 : `http://bbb.com/`  
+として実行します。  

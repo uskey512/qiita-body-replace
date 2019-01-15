@@ -40,7 +40,7 @@ func NewQiitaTeamClient(team, authToken string) (*QiitaClient, error) {
 	return &QiitaClient{fmt.Sprintf(QiitaTeamEndpointBase, team), authToken}, nil
 }
 
-func (q *QiitaClient) GetAuthenticatedUser() (GetAuthenticatedUserResponse, error) {
+func (q *QiitaClient) GetAuthenticatedUser() (*qiita.GetAuthenticatedUserResponse, error) {
 	url := q.endpointBase + "authenticated_user"
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -54,12 +54,11 @@ func (q *QiitaClient) GetAuthenticatedUser() (GetAuthenticatedUserResponse, erro
 	defer resp.Body.Close()
 
 	raw, _ := ioutil.ReadAll(resp.Body)
-	var data qiita.GetAuthenticatedUser
+	var data qiita.GetAuthenticatedUserResponse
 
 	if err := json.Unmarshal(raw, &data); err != nil {
-		return nil, errors.Wrap(err, "Json Unmarshal error : ", err)
+		return nil, errors.Wrap(err, "Json Unmarshal error ")
 	}
-	fmt.Println(data[0].Body)
 
-	return data, nil
+	return &data, nil
 }

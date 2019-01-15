@@ -1,4 +1,4 @@
-package qiita
+package models
 
 type GetAuthenticatedUserResponse struct {
 	Description                 string `json:"description"`

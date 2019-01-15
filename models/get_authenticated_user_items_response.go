@@ -1,4 +1,4 @@
-package qiita
+package models
 
 import "time"
 

@@ -11,11 +11,6 @@ func (g *GetAuthenticatedUserItemsResponses) UnmarshalJSON(bs []byte) error {
 
 type GetAuthenticatedUserItemsResponses struct {
 	Response []GetAuthenticatedUserItemsResponse
-	ErrorResult
-}
-
-type ErrorResult struct {
-	errorMessage string
 }
 
 type GetAuthenticatedUserItemsResponse struct {

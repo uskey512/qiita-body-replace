@@ -1,0 +1,6 @@
+name: qiita-body-replace
+source_path: '.'
+
+sources:
+  go: true
+
